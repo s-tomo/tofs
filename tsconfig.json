@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "declaration": true,
+    "sourceMap": false,
+    "removeComments": true
+  },
+  "include": [
+    "src/**/**.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

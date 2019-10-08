@@ -1,0 +1,25 @@
+version: 2
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/app
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: deps-{{ checksum "yarn.lock" }}
+      - run: yarn lint
+      - run: yarn test
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - test
