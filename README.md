@@ -44,6 +44,8 @@ await folder.remove();
 ```ts
 const file = new File("./hoge.tar.gz");
 
+file.stem; // "hoge.tar"
+
 file.suffix; // "gz"
 
 file.suffixes; // ["tar", "gz"]

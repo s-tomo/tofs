@@ -103,8 +103,14 @@ export class File extends AnyFile {
     return fs.open(this.path, flags, mode);
   }
 
+  get stem(): string {
+    const i = this.name.lastIndexOf(".");
+    return i < 0 ? this.name : this.name.substring(0, i);
+  }
+
   get suffix(): string {
-    return this.name.split(".").pop() || "";
+    const i = this.name.lastIndexOf(".");
+    return i < 0 ? "" : this.name.substring(i + 1);
   }
 
   get suffixes(): string[] {

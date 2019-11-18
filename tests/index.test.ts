@@ -76,6 +76,10 @@ describe("file type", () => {
   const FILEPATH = join(WORKDIR, "hoge.tar.gz");
   const file = new File(FILEPATH);
 
+  test("stem property", () => {
+    expect(file.stem).toBe("hoge.tar");
+  });
+
   test("suffix property", () => {
     expect(file.suffix).toBe("gz");
   });
