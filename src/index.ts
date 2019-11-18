@@ -123,6 +123,10 @@ export class Folder extends AnyFile {
     return this.stat().then(stat => stat.isDirectory());
   }
 
+  child<T extends AnyFile>(name: string, { as }: { as: FileType<T> }): T {
+    return new as(join(this.path, name));
+  }
+
   async children(opts: { castable?: FileType[] } = {}): Promise<AnyFile[]> {
     const children = await fs.readdir(this.path);
     const types = [...(opts.castable || []), Folder, File, Unknown];

@@ -106,6 +106,14 @@ describe("folder type", () => {
   const FOLDERPATH = join(WORKDIR, "foo");
   const FILEPATH = join(FOLDERPATH, "bar");
 
+  test("child", async () => {
+    const folder = new Folder(FOLDERPATH);
+    const child = folder.child("bar", { as: File });
+
+    await expect(child instanceof File).toBeTruthy();
+    await expect(child.path).toBe(join(folder.path, "bar"));
+  });
+
   test("static make method", async () => {
     await expect(fs.access(FOLDERPATH)).rejects.toThrow();
 

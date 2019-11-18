@@ -60,7 +60,7 @@ const fd: fs.promises.FileHandler = await file.open("r");
 // with static method
 const folder = await Folder.make("/foo/bar");
 // or
-await folder.make()
+await folder.make();
 
 for (const child of await folder.children()) {
   if (child.is(File)) {
@@ -73,6 +73,9 @@ for (const child of await folder.children()) {
     console.log(`unknown file type: ${file.path}`);
   }
 }
+
+// get the specified child file instance
+const child: Folder = folder.child("child-name", { as: Folder });
 ```
 
 ### Custom File Type
