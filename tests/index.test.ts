@@ -106,10 +106,23 @@ describe("folder type", () => {
   const FOLDERPATH = join(WORKDIR, "foo");
   const FILEPATH = join(FOLDERPATH, "bar");
 
-  test("make and remove", async () => {
+  test("static make method", async () => {
     await expect(fs.access(FOLDERPATH)).rejects.toThrow();
 
     const folder = await Folder.make(FOLDERPATH);
+
+    await expect(folder instanceof Folder).toBeTruthy();
+    await expect(fs.access(FOLDERPATH)).resolves.toBeUndefined();
+
+    await fs.rmdir(FOLDERPATH);
+  });
+
+  test("make and remove", async () => {
+    const folder = new Folder(FOLDERPATH);
+
+    await expect(fs.access(FOLDERPATH)).rejects.toThrow();
+
+    await folder.make();
 
     await expect(fs.access(FOLDERPATH)).resolves.toBeUndefined();
 

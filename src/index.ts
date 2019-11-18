@@ -151,11 +151,16 @@ export class Folder extends AnyFile {
     await fs.rmdir(this.path);
   }
 
-  static async make(
+  async make(opts?: MakeDirectoryOptions): Promise<void> {
+    await fs.mkdir(this.path, opts);
+  }
+
+  static async make<T extends Folder>(
+    this: FileType<T>,
     path: string,
     opts?: MakeDirectoryOptions,
-  ): Promise<Folder> {
+  ): Promise<T> {
     await fs.mkdir(path, opts);
-    return new Folder(path);
+    return new this(path);
   }
 }

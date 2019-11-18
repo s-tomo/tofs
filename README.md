@@ -56,7 +56,11 @@ const fd: fs.promises.FileHandler = await file.open("r");
 ### Folder
 
 ```ts
+// Make folder
+// with static method
 const folder = await Folder.make("/foo/bar");
+// or
+await folder.make()
 
 for (const child of await folder.children()) {
   if (child.is(File)) {
