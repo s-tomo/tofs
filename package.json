@@ -46,7 +46,7 @@
     }
   },
   "dependencies": {
-    "@types/node": "^14.14.35"
+    "@types/node": "^14.14.37"
   },
   "devDependencies": {
     "@types/jest": "^26.0.22",
